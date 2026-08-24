@@ -201,7 +201,22 @@ public class Assignment : MonoBehaviour
     public int as08Payment;
     public void As08_PurchasingSystemExample()
     {
-        throw new System.NotImplementedException();
+        if (as08Quantity > 0)
+        {
+            if (as08Payment >= as08Price)
+            {
+                Debug.Log("คุณได้รับสินค้าแล้ว");
+                if (as08Payment > as08Price)
+                {
+                    Debug.Log($"คุณได้รับเงินทอน {as08Payment - as08Price} บาท");
+                }
+            }
+            else { Debug.Log("คุณเงินไม่พอ"); }
+        }
+        else if (as08Quantity <= 0)
+        {
+            Debug.Log("คุณสินค้าหมด");
+        }
     }
 
     public int as09UserChoice;
