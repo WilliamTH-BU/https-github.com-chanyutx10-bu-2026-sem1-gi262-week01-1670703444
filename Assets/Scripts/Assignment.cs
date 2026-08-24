@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Assignment : MonoBehaviour
@@ -15,6 +16,9 @@ public class Assignment : MonoBehaviour
         As08_PurchasingSystemExample();
         As09_RockPaperScissorsExample();
         As10_CalculateWeaponDamage();
+    }
+    private void Update()
+    {
         As11_DeterminePlayerRank();
     }
 
@@ -223,7 +227,21 @@ public class Assignment : MonoBehaviour
     public int as09ComputerChoice;
     public void As09_RockPaperScissorsExample()
     {
-        throw new System.NotImplementedException();
+        if (as09UserChoice < 0 || as09UserChoice > 2)
+        {
+            Debug.Log("กรุณาเลือกเป็นตัวเลขที่ถูกต้อง");
+        }
+        else if (as09UserChoice == as09ComputerChoice)
+        {
+            Debug.Log("เสมอ");
+        }
+        else if ((as09UserChoice == 0 && as09ComputerChoice == 2) ||
+             (as09UserChoice == 1 && as09ComputerChoice == 0) ||
+             (as09UserChoice == 2 && as09ComputerChoice == 1))
+        {
+            Debug.Log("คุณชนะ!");
+        }
+        else { Debug.Log("คุณแพ้!"); }
     }
 
     public string as10WeaponType;
@@ -232,7 +250,19 @@ public class Assignment : MonoBehaviour
     {
         // TODO: Add your implementation here
         // Example: Debug.Log("result as string");
-        throw new System.NotImplementedException();
+        double multiplier = 1.0;
+        switch (as10WeaponType?.ToLower())
+        {
+        case "sword": multiplier = 1.3; break;
+        case "axe": multiplier = 1.4; break;
+        case "bow": multiplier = 1.2; break;
+        case "staff": multiplier = 1.5; break;
+        case "dagger": multiplier = 1.1; break;
+        default: multiplier = 1.0; break;
+        }
+        int totalDamage = (int)(as10BaseDamage * multiplier);
+        Debug.Log(totalDamage.ToString());
+
     }
 
     public int as11Score;
@@ -241,6 +271,41 @@ public class Assignment : MonoBehaviour
     {
         // TODO: Add your implementation here
         // Example: Debug.Log("result as string");
-        throw new System.NotImplementedException();
+
+        if (as11Score < 0 || as11CompletionTime < 0)
+        {
+            Debug.Log("Invalid score or time");
+            return;
+        }
+        string rank = "";
+        int baseCoins = 0;
+
+        if (as11Score >= 0 && as11Score <= 3999)
+        {
+            rank = "Participation";
+            baseCoins = 25;
+        }
+        else if (as11Score >= 4000 && as11Score <= 5999)
+        {
+            rank = "Bronze";
+            baseCoins = 50;
+        }
+        else if (as11Score >= 6000 && as11Score <= 7999)
+        {
+            rank = "Silver";
+            baseCoins = 75;
+        }
+        else if (as11Score >= 8000)
+        {
+            rank = "Gold";
+            baseCoins = 100;
+        }
+
+        int timeBonus = 0;
+        if (as11CompletionTime <= 30) timeBonus = 25;
+        else if (as11CompletionTime <= 60) timeBonus = 10;
+
+        int totalCoins = baseCoins + timeBonus;
+        Debug.Log($"{rank} Rank - {totalCoins} coins earned!");
     }
 }
