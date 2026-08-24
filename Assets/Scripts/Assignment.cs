@@ -135,15 +135,65 @@ public class Assignment : MonoBehaviour
     {
         // TODO: Implement calculator logic
         // Example: Debug.Log("Result: 42");
-        throw new System.NotImplementedException();
-    }
+        double result;
+        switch (as06Op)
+        {
+            case '+': result = as06Num1 + as06Num2;
+                Debug.Log($"Result: {result}");
+                break;
+            case '-': result = as06Num1 - as06Num2;
+                Debug.Log($"Result: {result}");
+                break;
+            case '*': result = as06Num1 * as06Num2;
+                Debug.Log($"Result: {result}");
+                break;
+            case '/':
+                if (as06Num2 == 0)
+                {
+                    Debug.Log("Error: Cannot divide by zero.");
+                }
+                else
+                {
+                    result = as06Num1 / as06Num2;
+                    Debug.Log($"Result: {result}");
+                }
+                break;
+            default:
+                Debug.Log("Invalid operator. Please use +, -, *, or /.");
+                return;
+        }
+    }   
 
     public int as07Month;
     public void As07_GetSeason()
     {
         // TODO: Implement logic to return season
         // Example: Debug.Log("Summer");
-        throw new System.NotImplementedException();
+        {
+            if (as07Month >= 1 && as07Month <= 12)
+            {
+                if (as07Month == 12 || as07Month == 1 || as07Month == 2)
+                {
+                    Debug.Log("It's Winter.");
+                }
+                else if (as07Month >= 3 && as07Month <= 5)
+                {
+                    Debug.Log("It's Spring.");
+                }
+                else if (as07Month >= 6 && as07Month <= 8)
+                {
+                    Debug.Log("It's Summer.");
+                }
+                else if (as07Month >= 9 && as07Month <= 11)
+                {
+                    Debug.Log("It's Fall.");
+                }
+            }
+            else
+            {
+                Debug.Log("Invalid month number. Please enter a number between 1 and 12.");
+            }
+        }
     }
 
     public int as08Quantity;
